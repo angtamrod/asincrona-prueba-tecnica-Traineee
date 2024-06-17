@@ -18,17 +18,31 @@
 
 //2. Declaramos funciones
  botones.forEach((boton, index) => {
-     let hiceHover = false;
 
      boton.addEventListener("mouseover", () => {
-        hiceHover = true;
-        imagenFondo.style.opacity = 1; 
+        hiceHover = boton;
+        botones.forEach(boton => {
+            if (boton === hiceHover){
+                boton.style.opacity = 1; 
+            } else {
+                boton.style.opacity = 0.5;
+            }
+        });
+        
+        imagenFondo.style.opacity = 1;
         imagenFondo.style.backgroundImage = `url(${images[index]})`;
         
      });
 
      boton.addEventListener("mouseout", () => {
-        hiceHover = false;
-         imagenFondo.style.opacity = 0; 
+        let hiceHover = false;
+        hiceHover = boton;
+        botones.forEach(boton => {
+            boton.style.opacity = 1;
+        });
+        if (hiceHover) {
+            imagenFondo.style.opacity = 0; 
+        }
+         
      });
  });
